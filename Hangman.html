@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div>
+          <h2>Guess the word:</h2>
+          <p id="right"></p>
+          <p>
+            <span id="remain">12</span> guesses remain
+          </p>
+          <p id="wrong"></p>
+        </div>
+      </div>
+    </div>
+
+    <style type="text/css">
+      #right {
+        letter-spacing: 3px;
+      }
+    </style>
+
+    <script type="text/javascript">
+      // TODO: create an array of words for the game; call this variable words
+
+      var game = {
+        guessed: [],
+        // TODO: set left to the number of starting lives you want
+        left: ,
+        start: function() {
+          // TODO: game just started, so set this.complete to false
+
+          this.word = words[Math.floor(Math.random() * words.length)];
+          this.$right = document.getElementById('right');
+          this.$wrong = document.getElementById('wrong');
+          this.$remain = document.getElementById('remain');
+          this.$right.innerHTML = '_'.repeat(this.word.length);
+        },
+        guess: function(letter) {
+          // TODO: fill in the if statement to check if this.left is greater than 0 and make sure this.complete isn't true
+          if () {
+            if (this.word.indexOf(letter) > -1 || this.guessed.indexOf(letter) > -1) {
+              this.right(letter);
+            } else {
+              this.wrong(letter);
+            }
+          }
+        },
+        right: function(letter) {
+          for(var i = 0; i < this.word.length; i++) {
+          	// TODO: Check if this.word in the ith position contains the guessed letter
+            if () {
+              var word = this.$right.innerHTML.split('');
+              // TODO: Replace character i with the guessed letter
+
+              this.$right.innerHTML = word.join('');
+            }
+          }
+          if (this.$right.innerHTML.indexOf('_') < 0) {
+            alert('you win!');
+            // TODO: Game is over, so set this.complete to true
+            
+          }
+        },
+        wrong: function(letter) {
+          this.guessed.push(letter);
+          this.$wrong.innerHTML += ' ' + letter;
+          // TODO: If letter is wrong, decrease amount of lives (this.left) by one
+          
+          this.$remain.innerHTML = this.left;
+          // TODO: Check if this.left is less than 1 so that we can signal the game is over
+          if () {
+            alert('you lose! '+ this.word);
+            // TODO: Game is over so set this.complete to true
+            
+          }
+        }
+      };
+      game.start();
+      document.onkeyup = function(event) {
+        var letter = String.fromCharCode(event.keyCode).toLowerCase();
+        game.guess(letter);
+      };
+    </script>
+  </body>
+</html>
